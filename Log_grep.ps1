@@ -16,7 +16,7 @@ Write-Host $file
 
 #$path = Join-Path -Path "C:\Users\UT392A.CM" -ChildPath $file -AdditionalChildPaths "Imp.txt"
 
-$path = Join-Path -Path "\\smb61-nas6.par.emea.cib\CCC_LOGS_PRODMCR\CCC-MC" -ChildPath $file
+$path = Join-Path -Path "\\" -ChildPath $file
 $fullpath = Join-Path -Path $path -ChildPath "*\*\*.log" 
 
 #$path = Join-Path -Path "C:\Users\UT392A" -ChildPath $file
@@ -24,7 +24,7 @@ $fullpath = Join-Path -Path $path -ChildPath "*\*\*.log"
 
 $date = Get-Date -Format "yyyyMMdd"
 
-New-Item -Path "\\smb62-nas6.par.emea.cib\CCC_DATA_UATMCR\Log\" -Name "$file"  -ItemType "directory"
+New-Item -Path "\\" -Name "$file"  -ItemType "directory"
 
 
  
@@ -32,23 +32,23 @@ New-Item -Path "\\smb62-nas6.par.emea.cib\CCC_DATA_UATMCR\Log\" -Name "$file"  -
  foreach($a in $childpath){
  $childpath1 = $a.BaseName
  Write-Host $childpath1
-#$path = Join-Path -Path "\\smb61-nas6.par.emea.cib\CCC_LOGS_PRODMCR\CCC-MC" -ChildPath $file
-#$fullpath = Join-Path -Path $path -ChildPath "676\8097995551114103946\CMVAPA5634_0.log"
+#$path = Join-Path -Path "\\" -ChildPath $file
+#$fullpath = Join-Path -Path $path -ChildPath "\\"
 
 
 #$fullpath = Join-Path -Path $path -ChildPath "Imp.txt"
 
-#Join-Path "C:\Users\UT392A.CM" $file "Imp.txt" -Resolve
+#Join-Path "\\" $file "Imp.txt" -Resolve
 
 $finalpath = Split-Path -Path $fullpath -Leaf -Resolve
 #Foreach-Object {  $content = Get-Content $_.FullName 
  #$content
- $dest="\\smb62-nas6.par.emea.cib\CCC_DATA_UATMCR\Log\$file\$childpath1.txt"
+ $dest="\\Log\$file\$childpath1.txt"
  if(Test-Path $dest ){
  $i=0
  While(Test-path $dest ){
  $i +=1
- $dest="\\smb62-nas6.par.emea.cib\CCC_DATA_UATMCR\Log\$file\$childpath1$i.txt"
+ $dest="\\Log\$file\$childpath1$i.txt"
  }
  }
  Else {
